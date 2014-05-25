@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body {
+			margin: 0;
+			font-family: sans-serif;
+		}
+
+		.font-serif {
+			font-family: serif;
+			font-weight: bold;
+		}
+
+		h1 {
+			margin: 0;
+			font-weight: lighter;
+		}
+
+		.config-box {
+			width: 300px;
+			padding: 10px;
+			background: url('jenkins-background.png');
+			background-size: 145px auto;
+			background-repeat: no-repeat;
+			background-position: bottom right;
+		}
+
+		.config-list {
+			list-style: none;
+			padding: 0;
+		}
+
+		.config-list > li {
+			margin-bottom: 10px;
+		}
+
+		.config-list span {
+			display: inline-block;
+		}
+
+		.config-list label {
+			width: 100px;
+			display: inline-block;
+		}
+
+		.config-list input {
+			width: 180px;
+		}
+
+		.config-list > li:last-child {
+			float: right;
+			margin-right: 10px;
+			margin-bottom: 0;
+		}
+
+		input {
+			background: rgba(255, 255, 255, 0.5);
+		}
+
+		button {
+			background: rgba(80, 120, 255, 0.8);
+			font-weight: bold;
+			font-size: 16px;
+			color: white;
+		}
+
+	</style>
+	<script type="text/javascript" src="lib/jquery-2.1.1.js"></script>
+	<script type="text/javascript" src="config.js"></script>
+</head>
+<body>
+
+<div class="config-box">
+	<h1><span class="font-serif">Jenkins</span> autoLogin</h1>
+	<ul class="config-list">
+		<li><label for="config-enabled">enabled</label><input id="config-enabled" type="checkbox"></li>
+		<li><label for="config-host">host</label><input id="config-host" type="text"></li>
+		<li><label for="config-user">userid</label><input id="config-user" type="text"></li>
+		<li><label for="config-password">password</label><input id="config-password" type="text"></li>
+		<li><label for="config-redirect">navigate url</label><input id="config-redirect" type="text"></li>
+		<li>
+			<button id="button-done">save</button>
+		</li>
+	</ul>
+	<div style="clear: both"></div>
+
+</div>
+</body>
+</html>

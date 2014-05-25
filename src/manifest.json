@@ -1,0 +1,25 @@
+{
+	"manifest_version": 2,
+
+	"name": "Jenkins Login",
+	"description": "enters provided credentials, then navigates to provided url",
+	"version": "1.0",
+
+	"browser_action": {
+		"default_icon": "jenkins.png",
+		"default_popup": "config.html"
+	},
+
+	"permissions": ["storage", "tabs"],
+
+	"background": {
+		"scripts": ["background.js"]
+	},
+
+	"content_scripts": [
+		{
+			"matches": [ "http://*/*", "https://*/*" ],
+			"js": ["lib/jquery-2.1.1.js", "login.js"]
+		}
+	]
+}
