@@ -12,7 +12,7 @@ var contentScript = {
 	theConfig: null,
 
 	// we are logged in when we can logout ;)
-	loggedInSelector: "#login-field a[href='/logout']",
+	loggedInSelector: "#login-field a[href$='/logout']",
 
 	init: function () {
 		this.loadConfig();
@@ -31,17 +31,17 @@ var contentScript = {
 		if (contentScript.theConfig.enabled && contentScript.theConfig.host === document.location.host) {
 			if (contentScript.isLoggedIn()) {
 				console.info("most of it is done - already logged in!");
-				if (document.location.pathname.indexOf(contentScript.theConfig.redirect) != 0) {
+				if (document.location.pathname.indexOf(contentScript.theConfig.context + contentScript.theConfig.redirect) != 0) {
 					console.info("we are almost there");
-					document.location.pathname = contentScript.theConfig.redirect;
+					document.location.pathname = contentScript.theConfig.context + contentScript.theConfig.redirect;
 				} else {
 					console.info("make sure we are fullscreen");
 					contentScript.maximizeWindow();
 					console.info("done!");
 				}
-			} else if (document.location.pathname !== "/login") {
+			} else if (document.location.pathname !== contentScript.theConfig.context + "/login") {
 				console.info("navigating to login page");
-				document.location.pathname = "/login";
+				document.location.pathname = contentScript.theConfig.context + "/login";
 			} else {
 				console.info("we are here now - lets log in");
 				contentScript.doLogon();

@@ -16,6 +16,7 @@ var autoLogin = {
 		host: {type: "text", selector: "#config-host"},
 		user: {type: "text", selector: "#config-user"},
 		password: {type: "text", selector: "#config-password"},
+		context: {type: "text", selector: "#config-context"},
 		redirect: {type: "text", selector: "#config-redirect"}
 	},
 
@@ -59,15 +60,13 @@ var autoLogin = {
 			if (this.configFields.hasOwnProperty(item)) {
 				var field = this.configFields[item];
 				if (field.type === "checkbox") {
-					var proxyCheckbox = $.proxy(function (item) {
-						autoLogin.theConfig[item] = $(this.configFields[item].selector)[0].checked;
+					var proxyCheckbox = $.proxy(function (item, event) {
+						autoLogin.theConfig[item] = event.originalEvent.srcElement.checked;
 					}, this, item);
 					$(field.selector).on("click", proxyCheckbox);
 				} else if (field.type === "text") {
-					// this looks more complicated then it needs to be - any way i can preserve both a
-					// additionalVariable based on the initial context and the current event?
-					var proxyText = $.proxy(function (item) {
-						autoLogin.theConfig[item] = $(this.configFields[item].selector).val();
+					var proxyText = $.proxy(function (item, event) {
+						autoLogin.theConfig[item] = event.originalEvent.srcElement.value;
 					}, this, item);
 					$(field.selector).on("input propertychange paste", proxyText);
 				}
