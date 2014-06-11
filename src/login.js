@@ -12,7 +12,7 @@ var contentScript = {
 	theConfig: null,
 
 	// we are logged in when we can logout ;)
-	loggedInSelector: "#login-field a[href$='/logout']",
+	loggedInSelector: "#header .login a[href$='/logout']",
 
 	init: function () {
 		this.loadConfig();
